@@ -17,7 +17,8 @@ const ClientSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 3
+        minlength: 3,
+        unique: true
     },
     password: {
         type: String,
@@ -39,6 +40,15 @@ const ClientSchema = new Schema({
         required: true,
         trim: true,
         minlength: 3
+    },
+    status: {
+        type: String, 
+        enum: ['Pending', 'Active'],
+        default: 'Pending'
+      },
+    confirmationCode: { 
+        type: String, 
+        unique: true 
     },
 },
     {

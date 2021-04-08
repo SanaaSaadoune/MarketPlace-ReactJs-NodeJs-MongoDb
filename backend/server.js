@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require('body-parser');
+const path = require("path")
 
 // @ts-ignore
 global.__basedir = __dirname;
@@ -27,6 +28,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 
+app.use("/", express.static(path.join(__dirname, "/app/upload")));
+
+
+
 
 mongoose.Promise = global.Promise;
 // Connecting to the database
@@ -44,14 +49,21 @@ mongoose.connect(dbConfig.url, {
 
 
 require("./app/routes/route.admin")(app)
-require("./app/routes/route.user")(app)
-require("./app/routes/route.category")(app)
-require("./app/routes/route.question")(app)
+require("./app/routes/route.superadmin")(app)
+require("./app/routes/route.client")(app)
+require("./app/routes/route.categorie")(app)
+require("./app/routes/route.vendeur")(app)
+require("./app/routes/route.produit")(app)
+require("./app/routes/route.panier")(app)
+require("./app/routes/route.commande")(app)
+require("./app/routes/route.livreur")(app)
+
 
 
 
 var server = app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
 
 module.exports = {server, mongoose}
