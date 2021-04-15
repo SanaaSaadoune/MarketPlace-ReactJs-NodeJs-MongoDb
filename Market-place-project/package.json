@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "test": "jest --testEnvironment=node  --forceExit",
-    "start": "nodemon app.js"
+    "start": "nodemon BackEnd/server.js" 
   },
   "keywords": [],
   "author": "",
